@@ -18,6 +18,11 @@
         <h1>正在准备下载...</h1>
         <p>如果您的设备是安卓或苹果手机，页面将自动跳转到下载页。</p>
         <p>如果页面没有反应，请使用手机浏览器扫描二维码或访问此页面。</p>
+        <!-- 调试信息显示区域 -->
+        <div id="debug-info" style="margin-top: 20px; padding: 10px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; font-size: 12px; text-align: left;">
+            <strong>调试信息：</strong><br>
+            <span id="device-info">正在检测设备...</span>
+        </div>
         <!-- 你可以在这里放一个二维码图片 -->
         <!-- <img src="你的二维码图片地址" alt="扫描二维码下载"> -->
     </div>
@@ -33,32 +38,53 @@
 
             // 获取浏览器的User Agent
             var u = navigator.userAgent;
+            
+            // 获取调试信息显示元素
+            var debugElement = document.getElementById('device-info');
+            
+            // 显示User Agent信息
+            var debugInfo = 'User Agent: ' + u + '<br><br>';
 
             // 判断是否是安卓手机
             var isAndroid = /Android/i.test(u);
+            debugInfo += 'Android检测: ' + (isAndroid ? '✅ 是Android设备' : '❌ 不是Android设备') + '<br>';
 
             // 判断是否是苹果手机
             var isIOS = /iPad|iPhone|iPod/.test(u) || (u.indexOf('Mac') > -1 && 'ontouchend' in document);
+            debugInfo += 'iOS检测: ' + (isIOS ? '✅ 是iOS设备' : '❌ 不是iOS设备') + '<br><br>';
 
             // 执行判断和跳转
             if (isAndroid) {
                 // 如果是安卓设备，跳转到安卓下载链接
+                debugInfo += '🔄 检测到Android设备，3秒后跳转到: ' + android_url;
+                debugElement.innerHTML = debugInfo;
                 console.log('检测到Android设备，跳转到:', android_url);
-                try {
-                    window.location.href = android_url;
-                } catch (e) {
-                    console.error('跳转失败:', e);
-                }
+                setTimeout(function() {
+                    try {
+                        window.location.href = android_url;
+                    } catch (e) {
+                        console.error('跳转失败:', e);
+                        debugElement.innerHTML += '<br>❌ 跳转失败: ' + e.message;
+                    }
+                }, 3000);
             } else if (isIOS) {
                 // 如果是苹果设备，跳转到苹果下载链接
+                debugInfo += '🔄 检测到iOS设备，3秒后跳转到: ' + ios_url;
+                debugElement.innerHTML = debugInfo;
                 console.log('检测到iOS设备，跳转到:', ios_url);
-                try {
-                    window.location.href = ios_url;
-                } catch (e) {
-                    console.error('跳转失败:', e);
-                }
+                setTimeout(function() {
+                    try {
+                        window.location.href = ios_url;
+                    } catch (e) {
+                        console.error('跳转失败:', e);
+                        debugElement.innerHTML += '<br>❌ 跳转失败: ' + e.message;
+                    }
+                }, 3000);
             } else {
                 // 如果两个都不是，就不执行任何操作，用户会看到HTML页面上的内容
+                debugInfo += '💻 检测到其他设备（PC/其他），停留在当前页面<br>';
+                debugInfo += '📱 请使用手机浏览器访问此页面进行自动跳转';
+                debugElement.innerHTML = debugInfo;
                 console.log('检测到其他设备，停留在当前页面');
                 console.log('User Agent:', u);
             }
