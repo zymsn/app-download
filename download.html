@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App 下载</title>
+    <style>
+        /* 这部分是给PC端或其他设备看的页面的简单样式 */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f4; text-align: center; }
+        .container { padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1 { color: #333; }
+        p { color: #666; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>正在准备下载...</h1>
+        <p>如果您的设备是安卓或苹果手机，页面将自动跳转到下载页。</p>
+        <p>如果页面没有反应，请使用手机浏览器扫描二维码或访问此页面。</p>
+        <!-- 你可以在这里放一个二维码图片 -->
+        <!-- <img src="你的二维码图片地址" alt="扫描二维码下载"> -->
+    </div>
+
+    <script type="text/javascript">
+        // 立即执行的函数，避免污染全局变量
+        (function () {
+            // =================  在这里配置你的下载地址  =================
+            // 客户可以在后台修改的功能，最终也是修改这两个地址的值
+            var android_url = "https://www.aioclinic.com/ai_assistant/download"; // 示例：微信的安卓下载地址
+            var ios_url = "https://apps.apple.com/cn/app/btimer-app/id6749220330"; // 示例：微信的iOS下载地址
+            // ==========================================================
+
+            // 获取浏览器的User Agent
+            var u = navigator.userAgent;
+
+            // 判断是否是安卓手机
+            var isAndroid = /Android/i.test(u);
+
+            // 判断是否是苹果手机
+            var isIOS = /iPad|iPhone|iPod/.test(u) || (u.indexOf('Mac') > -1 && 'ontouchend' in document);
+
+            // 执行判断和跳转
+            if (isAndroid) {
+                // 如果是安卓设备，跳转到安卓下载链接
+                console.log('检测到Android设备，跳转到:', android_url);
+                try {
+                    window.location.href = android_url;
+                } catch (e) {
+                    console.error('跳转失败:', e);
+                }
+            } else if (isIOS) {
+                // 如果是苹果设备，跳转到苹果下载链接
+                console.log('检测到iOS设备，跳转到:', ios_url);
+                try {
+                    window.location.href = ios_url;
+                } catch (e) {
+                    console.error('跳转失败:', e);
+                }
+            } else {
+                // 如果两个都不是，就不执行任何操作，用户会看到HTML页面上的内容
+                console.log('检测到其他设备，停留在当前页面');
+                console.log('User Agent:', u);
+            }
+        })();
+    </script>
+
+</body>
+</html>
