@@ -1,93 +1,454 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App 下载</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="cache-version" content="v2.3.0">
+    <title>App Download</title>
     <style>
-        /* 这部分是给PC端或其他设备看的页面的简单样式 */
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f4; text-align: center; }
-        .container { padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        h1 { color: #333; }
-        p { color: #666; }
+        /* Page styles */
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center; 
+            padding: 20px 0;
+            box-sizing: border-box;
+        }
+        .container { 
+            padding: 40px; 
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1); 
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        @media (max-width: 480px) {
+            body {
+                padding: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+            }
+            .container {
+                padding: 32px 24px;
+                max-width: 90%;
+                width: 90%;
+                margin: 0 auto;
+                border-radius: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+                text-align: center;
+            }
+            .download-buttons {
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+            }
+            .download-btn {
+                max-width: 280px;
+                min-width: 250px;
+                padding: 24px 20px;
+                border-radius: 16px;
+                width: 100%;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        h1 { 
+            color: #1a1a1a; 
+            margin-bottom: 8px;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .subtitle { 
+            color: #666; 
+            margin-bottom: 40px;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+                margin-bottom: 12px;
+                letter-spacing: -0.6px;
+            }
+            .subtitle {
+                font-size: 16px;
+                margin-bottom: 36px;
+                padding: 0 10px;
+            }
+        }
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            max-width: 100%;
+            width: 100%;
+        }
+        .download-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 18px;
+            text-decoration: none;
+            color: #333;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            min-width: 110px;
+            flex: 1;
+            max-width: 140px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .download-btn:hover {
+            border-color: rgba(66, 133, 244, 0.4);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .download-btn:active {
+            background: rgba(255, 255, 255, 1);
+        }
+        .download-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px auto;
+            display: block;
+        }
+        .download-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+        .download-subtext {
+            font-size: 13px;
+            color: #666;
+            font-weight: 400;
+            opacity: 0.8;
+            text-align: center;
+        }
+        @media (max-width: 480px) {
+            .download-icon {
+                width: 56px;
+                height: 56px;
+                margin: 0 auto 18px auto;
+                display: block;
+            }
+            .download-text {
+                font-size: 18px;
+                margin-bottom: 6px;
+                text-align: center;
+            }
+            .download-subtext {
+                font-size: 14px;
+                text-align: center;
+                opacity: 0.8;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>正在准备下载...</h1>
-        <p>如果您的设备是安卓或苹果手机，页面将自动跳转到下载页。</p>
-        <p>如果页面没有反应，请使用手机浏览器扫描二维码或访问此页面。</p>
-        <!-- 调试信息显示区域 -->
-        <div id="debug-info" style="margin-top: 20px; padding: 10px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; font-size: 12px; text-align: left;">
-            <strong>调试信息：</strong><br>
-            <span id="device-info">正在检测设备...</span>
+        <h1>App Download</h1>
+        <p class="subtitle" id="subtitle-text">Choose your device type to download</p>
+        <div style="position: absolute; bottom: 5px; right: 10px; font-size: 10px; color: rgba(0,0,0,0.3); z-index: 1000;">v2.3.0</div>
+        
+        <div class="download-buttons" id="download-buttons">
+            <!-- 安卓下载按钮 -->
+            <a href="#" class="download-btn" id="android-btn">
+                <svg class="download-icon" viewBox="0 0 100 100" fill="#3DDC84">
+                    <!-- Android机器人头部 -->
+                    <path d="M30 30 Q30 20 40 20 L60 20 Q70 20 70 30 L70 40 L30 40 Z"/>
+                    <!-- Android机器人身体 -->
+                    <rect x="35" y="40" width="30" height="35" rx="5"/>
+                    <!-- Android机器人天线 -->
+                    <line x1="42" y1="20" x2="38" y2="10" stroke="#3DDC84" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="58" y1="20" x2="62" y2="10" stroke="#3DDC84" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Android机器人眼睛 -->
+                    <circle cx="43" cy="30" r="2" fill="white"/>
+                    <circle cx="57" cy="30" r="2" fill="white"/>
+                    <!-- Android机器人手臂 -->
+                    <rect x="25" y="45" width="4" height="20" rx="2"/>
+                    <rect x="71" y="45" width="4" height="20" rx="2"/>
+                    <!-- Android机器人腿 -->
+                    <rect x="40" y="75" width="4" height="15" rx="2"/>
+                    <rect x="56" y="75" width="4" height="15" rx="2"/>
+                </svg>
+                <div class="download-text">Android</div>
+                <div class="download-subtext">APK Download</div>
+            </a>
+            
+            <!-- iOS下载按钮 -->
+            <a href="#" class="download-btn" id="ios-btn">
+                <svg class="download-icon" viewBox="0 0 24 24" fill="#000">
+                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                </svg>
+                <div class="download-text">IOS</div>
+                <div class="download-subtext">App Store</div>
+            </a>
+            
+            <!-- Google Play下载按钮 -->
+            <a href="#" class="download-btn" id="google-btn">
+                <svg class="download-icon" viewBox="0 0 24 24">
+                    <defs>
+                        <linearGradient id="playGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#32bbff"/>
+                            <stop offset="100%" style="stop-color:#0c7cd5"/>
+                        </linearGradient>
+                        <linearGradient id="playGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ffc107"/>
+                            <stop offset="100%" style="stop-color:#ff8f00"/>
+                        </linearGradient>
+                        <linearGradient id="playGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff5722"/>
+                            <stop offset="100%" style="stop-color:#c41411"/>
+                        </linearGradient>
+                        <linearGradient id="playGradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#4caf50"/>
+                            <stop offset="100%" style="stop-color:#2e7d32"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Google Play三角形图标 -->
+                    <path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.61 3 21.09 3 20.5Z" fill="url(#playGradient1)"/>
+                    <path d="M16.81 15.12L6.05 21.34L3.84 21.85L13.69 12L16.81 15.12Z" fill="url(#playGradient2)"/>
+                    <path d="M16.81 8.88L13.69 12L3.84 2.15L6.05 2.66L16.81 8.88Z" fill="url(#playGradient3)"/>
+                    <path d="M13.69 12L16.81 8.88L20.16 10.83C20.67 11.17 21 11.75 21 12.3C21 12.85 20.67 13.43 20.16 13.77L16.81 15.12L13.69 12Z" fill="url(#playGradient4)"/>
+                </svg>
+                <div class="download-text">Google Play</div>
+                <div class="download-subtext">Play Store</div>
+            </a>
         </div>
-        <!-- 你可以在这里放一个二维码图片 -->
-        <!-- <img src="你的二维码图片地址" alt="扫描二维码下载"> -->
     </div>
 
     <script type="text/javascript">
+        // 强制清除缓存
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for(let registration of registrations) {
+                    registration.unregister();
+                }
+            });
+        }
+        
         // 立即执行的函数，避免污染全局变量
         (function () {
+            // 版本控制台输出
+            console.log('App Download Page v2.3.0 - ' + new Date().toLocaleString());
+            console.log('Cache cleared, latest version loaded');
+            
             // =================  在这里配置你的下载地址  =================
-            // 客户可以在后台修改的功能，最终也是修改这两个地址的值
-            var android_url = "https://www.aioclinic.com/ai_assistant/download"; // 示例：微信的安卓下载地址
-            var ios_url = "https://apps.apple.com/cn/app/btimer-app/id6749220330"; // 示例：微信的iOS下载地址
+            // 不同应用市场的下载地址配置
+            var app_markets = {
+                // 华为应用市场
+                huawei: "https://appgallery.huawei.com/#/app/C114847345",
+                // 百度手机助手
+                baidu: "https://mobile.baidu.com/item?pid=5000096937&source=appbaidu",
+                // 其他品牌默认使用百度
+                default: "https://mobile.baidu.com/item?pid=5000096937&source=appbaidu",
+                // 国外Google Play
+                google_play: "https://play.google.com/store/apps/details?id=app.qem.project&pcampaignid=web_share"
+            };
+            
+            var ios_url = "https://apps.apple.com/cn/app/btimer-app/id6749220330";
+            var google_play_url = "https://play.google.com/store/apps/details?id=app.qem.project&pcampaignid=web_share";
             // ==========================================================
 
             // 获取浏览器的User Agent
             var u = navigator.userAgent;
             
-            // 获取调试信息显示元素
-            var debugElement = document.getElementById('device-info');
-            
-            // 显示User Agent信息
-            var debugInfo = 'User Agent: ' + u + '<br><br>';
-
-            // 判断是否是安卓手机
+            // 判断是否是移动设备
             var isAndroid = /Android/i.test(u);
-            debugInfo += 'Android检测: ' + (isAndroid ? '✅ 是Android设备' : '❌ 不是Android设备') + '<br>';
-
-            // 判断是否是苹果手机
             var isIOS = /iPad|iPhone|iPod/.test(u) || (u.indexOf('Mac') > -1 && 'ontouchend' in document);
-            debugInfo += 'iOS检测: ' + (isIOS ? '✅ 是iOS设备' : '❌ 不是iOS设备') + '<br><br>';
+            var isMobile = isAndroid || isIOS;
 
-            // 执行判断和跳转
-            if (isAndroid) {
-                // 如果是安卓设备，跳转到安卓下载链接
-                debugInfo += '🔄 检测到Android设备，3秒后跳转到: ' + android_url;
-                debugElement.innerHTML = debugInfo;
-                console.log('检测到Android设备，跳转到:', android_url);
-                setTimeout(function() {
-                    try {
-                        window.location.href = android_url;
-                    } catch (e) {
-                        console.error('跳转失败:', e);
-                        debugElement.innerHTML += '<br>❌ 跳转失败: ' + e.message;
-                    }
-                }, 3000);
-            } else if (isIOS) {
-                // 如果是苹果设备，跳转到苹果下载链接
-                debugInfo += '🔄 检测到iOS设备，3秒后跳转到: ' + ios_url;
-                debugElement.innerHTML = debugInfo;
-                console.log('检测到iOS设备，跳转到:', ios_url);
-                setTimeout(function() {
-                    try {
-                        window.location.href = ios_url;
-                    } catch (e) {
-                        console.error('跳转失败:', e);
-                        debugElement.innerHTML += '<br>❌ 跳转失败: ' + e.message;
-                    }
-                }, 3000);
-            } else {
-                // 如果两个都不是，就不执行任何操作，用户会看到HTML页面上的内容
-                debugInfo += '💻 检测到其他设备（PC/其他），停留在当前页面<br>';
-                debugInfo += '📱 请使用手机浏览器访问此页面进行自动跳转';
-                debugElement.innerHTML = debugInfo;
-                console.log('检测到其他设备，停留在当前页面');
-                console.log('User Agent:', u);
+            // 手机品牌识别函数
+            function detectPhoneBrand() {
+                var ua = navigator.userAgent.toLowerCase();
+                var brand = 'default';
+                var model = 'unknown';
+                
+                console.log('Analyzing User Agent for phone brand detection...');
+                
+                // 华为手机识别
+                if (ua.includes('huawei') || ua.includes('honor') || ua.includes('kirin')) {
+                    brand = 'huawei';
+                    if (ua.includes('p40') || ua.includes('p30') || ua.includes('p20')) model = 'P series';
+                    else if (ua.includes('mate40') || ua.includes('mate30') || ua.includes('mate20')) model = 'Mate series';
+                    else if (ua.includes('nova')) model = 'Nova series';
+                    else if (ua.includes('honor')) model = 'Honor series';
+                }
+                // 百度手机助手（通过其他方式识别，如通过百度相关应用）
+                else if (ua.includes('baidu') || ua.includes('baiduboxapp')) {
+                    brand = 'baidu';
+                    model = 'Baidu App User';
+                }
+                // 其他品牌都使用百度应用市场
+                else {
+                    brand = 'default';
+                    model = 'Other Android (using Baidu)';
+                }
+                
+                console.log('Phone brand detected:', brand, 'Model:', model);
+                return { brand: brand, model: model };
             }
+
+            // IP地理位置检测函数
+            function detectUserLocation() {
+                console.log('Starting IP geolocation detection...');
+                return new Promise((resolve, reject) => {
+                    // 使用免费的IP地理位置API
+                    fetch('https://ipapi.co/json/')
+                        .then(response => {
+                            console.log('IP API response received, status:', response.status);
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Location detected - Country:', data.country_code, 'Region:', data.region, 'City:', data.city);
+                            console.log('User location: ' + (data.country_code === 'CN' ? 'China (Mainland)' : 'International'));
+                            resolve(data);
+                        })
+                        .catch(error => {
+                            console.log('IP detection failed:', error.message);
+                            console.log('Defaulting to Chinese region for fallback');
+                            // 如果检测失败，默认使用中国区域
+                            resolve({ country_code: 'CN' });
+                        });
+                });
+            }
+
+            // 等待DOM加载完成
+            document.addEventListener('DOMContentLoaded', function() {
+                // 为按钮添加点击事件（始终可用）
+                var androidBtn = document.getElementById('android-btn');
+                var iosBtn = document.getElementById('ios-btn');
+                var googleBtn = document.getElementById('google-btn');
+
+                if (androidBtn) {
+                    androidBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log('Android button clicked, detecting location and phone brand...');
+                        // 点击时重新检测IP位置和手机品牌
+                        detectUserLocation().then(locationData => {
+                            if (locationData.country_code === 'CN') {
+                                // 中国用户，根据手机品牌选择应用市场
+                                var phoneInfo = detectPhoneBrand();
+                                var targetUrl = app_markets[phoneInfo.brand] || app_markets.default;
+                                console.log('Chinese user with', phoneInfo.brand, phoneInfo.model, 'phone, opening Baidu App Store:', targetUrl);
+                                window.open(targetUrl, '_blank');
+                            } else {
+                                // 国外用户，使用Google Play
+                                console.log('International user, opening Google Play');
+                                window.open(app_markets.google_play, '_blank');
+                            }
+                        });
+                    });
+                }
+
+                if (iosBtn) {
+                    iosBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log('IOS button clicked, opening App Store');
+                        window.open(ios_url, '_blank');
+                    });
+                }
+
+                if (googleBtn) {
+                    googleBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log('Google Play button clicked, opening Play Store');
+                        window.open(google_play_url, '_blank');
+                    });
+                }
+
+                // 自动识别设备并尝试跳转（不影响手动操作）
+                if (isAndroid) {
+                                            console.log('Android device detected, starting location-based redirect...');
+                    detectUserLocation().then(locationData => {
+                        var targetUrl;
+                        if (locationData.country_code === 'CN') {
+                            // 中国用户，根据手机品牌选择应用市场
+                            var phoneInfo = detectPhoneBrand();
+                            targetUrl = app_markets[phoneInfo.brand] || app_markets.default;
+                            console.log('Chinese IP detected, phone brand:', phoneInfo.brand, phoneInfo.model, 'redirecting to Baidu App Store:', targetUrl);
+                        } else {
+                            // 国外用户，使用Google Play
+                            targetUrl = app_markets.google_play;
+                            console.log('International IP detected, redirecting to Google Play');
+                        }
+                        
+                        console.log('Attempting auto-redirect to:', targetUrl);
+                        try {
+                            window.location.href = targetUrl;
+                        } catch (e) {
+                            console.log('Auto-redirect failed, user can still use manual buttons');
+                        }
+                    });
+                } else if (isIOS) {
+                    console.log('iOS device detected, redirecting to App Store');
+                    console.log('iOS URL:', ios_url);
+                    // 添加延迟确保页面完全加载
+                    setTimeout(function() {
+                        try {
+                            console.log('Attempting iOS auto-redirect...');
+                            window.location.href = ios_url;
+                        } catch (e) {
+                            console.log('iOS auto-redirect failed:', e.message);
+                            console.log('User can still use manual buttons');
+                        }
+                    }, 1000);
+                } else {
+                    // 桌面设备（Windows/Mac/Linux）根据IP位置跳转
+                    console.log('Desktop device detected, checking IP location for redirect...');
+                    detectUserLocation().then(locationData => {
+                        var targetUrl;
+                        if (locationData.country_code === 'CN') {
+                            // 中国桌面用户，跳转到百度应用市场
+                            targetUrl = app_markets.default;
+                            console.log('Chinese desktop user, redirecting to Baidu App Store:', targetUrl);
+                        } else {
+                            // 国外桌面用户，跳转到Google Play
+                            targetUrl = app_markets.google_play;
+                            console.log('International desktop user, redirecting to Google Play:', targetUrl);
+                        }
+                        
+                        console.log('Attempting desktop auto-redirect to:', targetUrl);
+                        try {
+                            window.location.href = targetUrl;
+                        } catch (e) {
+                            console.log('Desktop auto-redirect failed:', e.message);
+                            console.log('User can still use manual buttons');
+                        }
+                    });
+                }
+            });
         })();
     </script>
 
