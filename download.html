@@ -135,8 +135,8 @@
             background: rgba(255, 255, 255, 1);
         }
         .download-icon {
-            width: 48px;
-            height: 48px;
+            width: 42px;
+            height: 42px;
             margin: 0 auto 16px auto;
             display: block;
         }
@@ -156,8 +156,8 @@
         }
         @media (max-width: 480px) {
             .download-icon {
-                width: 56px;
-                height: 56px;
+                width: 48px;
+                height: 48px;
                 margin: 0 auto 18px auto;
                 display: block;
             }
@@ -179,43 +179,10 @@
     <div class="container">
         <h1>App Download</h1>
         <p class="subtitle" id="subtitle-text">Choose your device type to download</p>
-        <div style="position: absolute; bottom: 5px; right: 10px; font-size: 10px; color: rgba(0,0,0,0.3); z-index: 1000;">v2.3.0</div>
+
         
         <div class="download-buttons" id="download-buttons">
-            <!-- 安卓下载按钮 -->
-            <a href="#" class="download-btn" id="android-btn">
-                <svg class="download-icon" viewBox="0 0 100 100" fill="#3DDC84">
-                    <!-- Android机器人头部 -->
-                    <path d="M30 30 Q30 20 40 20 L60 20 Q70 20 70 30 L70 40 L30 40 Z"/>
-                    <!-- Android机器人身体 -->
-                    <rect x="35" y="40" width="30" height="35" rx="5"/>
-                    <!-- Android机器人天线 -->
-                    <line x1="42" y1="20" x2="38" y2="10" stroke="#3DDC84" stroke-width="3" stroke-linecap="round"/>
-                    <line x1="58" y1="20" x2="62" y2="10" stroke="#3DDC84" stroke-width="3" stroke-linecap="round"/>
-                    <!-- Android机器人眼睛 -->
-                    <circle cx="43" cy="30" r="2" fill="white"/>
-                    <circle cx="57" cy="30" r="2" fill="white"/>
-                    <!-- Android机器人手臂 -->
-                    <rect x="25" y="45" width="4" height="20" rx="2"/>
-                    <rect x="71" y="45" width="4" height="20" rx="2"/>
-                    <!-- Android机器人腿 -->
-                    <rect x="40" y="75" width="4" height="15" rx="2"/>
-                    <rect x="56" y="75" width="4" height="15" rx="2"/>
-                </svg>
-                <div class="download-text">Android</div>
-                <div class="download-subtext">APK Download</div>
-            </a>
-            
-            <!-- iOS下载按钮 -->
-            <a href="#" class="download-btn" id="ios-btn">
-                <svg class="download-icon" viewBox="0 0 24 24" fill="#000">
-                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
-                </svg>
-                <div class="download-text">IOS</div>
-                <div class="download-subtext">App Store</div>
-            </a>
-            
-            <!-- Google Play下载按钮 -->
+            <!-- Google Play下载按钮（第一） -->
             <a href="#" class="download-btn" id="google-btn">
                 <svg class="download-icon" viewBox="0 0 24 24">
                     <defs>
@@ -244,6 +211,39 @@
                 </svg>
                 <div class="download-text">Google Play</div>
                 <div class="download-subtext">Play Store</div>
+            </a>
+
+            <!-- iOS下载按钮（第二） -->
+            <a href="#" class="download-btn" id="ios-btn">
+                <svg class="download-icon" viewBox="0 0 24 24" fill="#000">
+                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                </svg>
+                <div class="download-text">IOS</div>
+                <div class="download-subtext">App Store</div>
+            </a>
+
+            <!-- 安卓下载按钮（第三） -->
+            <a href="#" class="download-btn" id="android-btn">
+                <svg class="download-icon" viewBox="0 0 100 100" fill="#3DDC84">
+                    <!-- Android机器人头部 -->
+                    <path d="M30 30 Q30 20 40 20 L60 20 Q70 20 70 30 L70 40 L30 40 Z"/>
+                    <!-- Android机器人身体 -->
+                    <rect x="35" y="40" width="30" height="35" rx="5"/>
+                    <!-- Android机器人天线 -->
+                    <line x1="42" y1="20" x2="38" y2="10" stroke="#3DDC84" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="58" y1="20" x2="62" y2="10" stroke="#3DDC84" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Android机器人眼睛 -->
+                    <circle cx="43" cy="30" r="2" fill="white"/>
+                    <circle cx="57" cy="30" r="2" fill="white"/>
+                    <!-- Android机器人手臂 -->
+                    <rect x="25" y="45" width="4" height="20" rx="2"/>
+                    <rect x="71" y="45" width="4" height="20" rx="2"/>
+                    <!-- Android机器人腿 -->
+                    <rect x="40" y="75" width="4" height="15" rx="2"/>
+                    <rect x="56" y="75" width="4" height="15" rx="2"/>
+                </svg>
+                <div class="download-text">Android</div>
+                <div class="download-subtext">APK Download</div>
             </a>
         </div>
     </div>
@@ -278,6 +278,8 @@
             };
             
             var ios_url = "https://apps.apple.com/cn/app/btimer-app/id6749220330";
+            // iOS App Store 深链（优先尝试 itms-apps，可在部分环境绕过拦截）
+            var ios_url_scheme = ios_url.replace(/^https:\/\//, 'itms-apps://');
             var google_play_url = "https://play.google.com/store/apps/details?id=app.qem.project&pcampaignid=web_share";
             // ==========================================================
 
@@ -289,33 +291,82 @@
             var isIOS = /iPad|iPhone|iPod/.test(u) || (u.indexOf('Mac') > -1 && 'ontouchend' in document);
             var isMobile = isAndroid || isIOS;
 
-            // 手机品牌识别函数
+            // 手机品牌识别函数（增强版，覆盖 HarmonyOS/HuaweiBrowser/HMSCore 以及常见机型代号）
             function detectPhoneBrand() {
-                var ua = navigator.userAgent.toLowerCase();
+                var ua = navigator.userAgent || '';
+                var uaLower = ua.toLowerCase();
                 var brand = 'default';
                 var model = 'unknown';
-                
-                console.log('Analyzing User Agent for phone brand detection...');
-                
-                // 华为手机识别
-                if (ua.includes('huawei') || ua.includes('honor') || ua.includes('kirin')) {
-                    brand = 'huawei';
-                    if (ua.includes('p40') || ua.includes('p30') || ua.includes('p20')) model = 'P series';
-                    else if (ua.includes('mate40') || ua.includes('mate30') || ua.includes('mate20')) model = 'Mate series';
-                    else if (ua.includes('nova')) model = 'Nova series';
-                    else if (ua.includes('honor')) model = 'Honor series';
+
+                // UA-CH（User-Agent Client Hints）支持时，尝试从 brands 中识别
+                var uaDataBrands = [];
+                try {
+                    if (navigator.userAgentData && Array.isArray(navigator.userAgentData.brands)) {
+                        uaDataBrands = navigator.userAgentData.brands.map(function (b) {
+                            return (b.brand || '').toLowerCase();
+                        });
+                    }
+                } catch (e) {
+                    // ignore
                 }
-                // 百度手机助手（通过其他方式识别，如通过百度相关应用）
-                else if (ua.includes('baidu') || ua.includes('baiduboxapp')) {
+
+                console.log('Analyzing User Agent for phone brand detection...');
+
+                // 更全面的华为识别关键字/正则
+                var huaweiHints = [
+                    /huawei/,               // 明确包含 HUAWEI
+                    /honor/,                // 荣耀（老荣耀机多指向华为生态，便于使用华为市场）
+                    /hisilicon/,            // 海思
+                    /kirin/,                // 麒麟芯片
+                    /huaweibrowser/,        // 华为浏览器
+                    /harmonyos/,            // 鸿蒙系统
+                    /hmscore/,              // HMS Core WebView/组件
+                    /build\/(?:huawei|honor)/, // Build/HUAWEI
+                    /\bhw[-_]/,             // 机型代号前缀（部分 UA 会带 hw-）
+                    // 常见机型代号（不同代会出现在部分浏览器 UA 中）
+                    /\bnoh-[a-z0-9-]+/,     // Mate 40（NOH-AN00 等）
+                    /\baln-[a-z0-9-]+/,     // Mate 60（ALN-AL00 等）
+                    /\bcet-[a-z0-9-]+/,     // Mate 50（CET-AL00 等）
+                    /\btas-[a-z0-9-]+/,     // Mate 30（TAS-AL00 等）
+                    /\bhma-[a-z0-9-]+/,     // Mate 20（HMA-AL00 等）
+                    /\bana-[a-z0-9-]+/,     // P40（ANA-AN00 等）
+                    /\bels-[a-z0-9-]+/,     // P40（ELS-AN00 等）
+                    /\bele-[a-z0-9-]+/,     // P30（ELE-AL00 等）
+                    /\beml-[a-z0-9-]+/,     // P20（EML-AL00 等）
+                    /\babr-[a-z0-9-]+/,     // P50（ABR-AL00 等）
+                    /\blna-[a-z0-9-]+/,     // P60（LNA-AL00 等）
+                    /\bpcl-[a-z0-9-]+/      // P70（PCL-AL00 等，以传闻/常见代号做兜底）
+                ];
+
+                var uaIndicatesHuawei = huaweiHints.some(function (re) { return re.test(uaLower); });
+                var chIndicatesHuawei = uaDataBrands.some(function (b) { return b.includes('huawei') || b.includes('honor'); });
+
+                if (uaIndicatesHuawei || chIndicatesHuawei) {
+                    brand = 'huawei';
+
+                    // 基于 UA 粗略识别系列信息（并不影响跳转，仅用于日志）
+                    if (/p\s?(80|70|60|50|40|30|20)/i.test(ua) || /\bp(80|70|60|50|40|30|20)\b/i.test(ua)) {
+                        model = 'P series';
+                    } else if (/mate\s?(x|xs|x2|x3|x5|60|50|40|30|20)/i.test(ua)) {
+                        model = 'Mate series';
+                    } else if (/nova\s?([0-9]{1,2})/i.test(ua)) {
+                        model = 'Nova series';
+                    } else if (/fold/i.test(ua)) {
+                        model = 'Mate X series';
+                    } else if (/harmonyos/i.test(ua)) {
+                        model = 'HarmonyOS device';
+                    } else if (/honor/i.test(ua)) {
+                        model = 'Honor series';
+                    }
+                } else if (uaLower.includes('baidu') || uaLower.includes('baiduboxapp')) {
+                    // 百度 App/手助内置打开
                     brand = 'baidu';
                     model = 'Baidu App User';
-                }
-                // 其他品牌都使用百度应用市场
-                else {
+                } else {
                     brand = 'default';
                     model = 'Other Android (using Baidu)';
                 }
-                
+
                 console.log('Phone brand detected:', brand, 'Model:', model);
                 return { brand: brand, model: model };
             }
@@ -361,7 +412,7 @@
                                 // 中国用户，根据手机品牌选择应用市场
                                 var phoneInfo = detectPhoneBrand();
                                 var targetUrl = app_markets[phoneInfo.brand] || app_markets.default;
-                                console.log('Chinese user with', phoneInfo.brand, phoneInfo.model, 'phone, opening Baidu App Store:', targetUrl);
+                                console.log('Chinese user with', phoneInfo.brand, phoneInfo.model, 'phone, opening target market:', targetUrl);
                                 window.open(targetUrl, '_blank');
                             } else {
                                 // 国外用户，使用Google Play
@@ -376,7 +427,17 @@
                     iosBtn.addEventListener('click', function(e) {
                         e.preventDefault();
                         console.log('IOS button clicked, opening App Store');
-                        window.open(ios_url, '_blank');
+                        console.log('iOS URL:', ios_url);
+                        try {
+                            // 尝试多种方式打开App Store
+                            window.location.href = ios_url;
+                        } catch (err) {
+                            try {
+                                window.open(ios_url, '_blank');
+                            } catch (err2) {
+                                console.log('Failed to open App Store:', err2);
+                            }
+                        }
                     });
                 }
 
@@ -397,7 +458,7 @@
                             // 中国用户，根据手机品牌选择应用市场
                             var phoneInfo = detectPhoneBrand();
                             targetUrl = app_markets[phoneInfo.brand] || app_markets.default;
-                            console.log('Chinese IP detected, phone brand:', phoneInfo.brand, phoneInfo.model, 'redirecting to Baidu App Store:', targetUrl);
+                            console.log('Chinese IP detected, phone brand:', phoneInfo.brand, phoneInfo.model, 'redirecting to target market:', targetUrl);
                         } else {
                             // 国外用户，使用Google Play
                             targetUrl = app_markets.google_play;
@@ -432,7 +493,7 @@
                         if (locationData.country_code === 'CN') {
                             // 中国桌面用户，跳转到百度应用市场
                             targetUrl = app_markets.default;
-                            console.log('Chinese desktop user, redirecting to Baidu App Store:', targetUrl);
+                            console.log('Chinese desktop user, redirecting to target market:', targetUrl);
                         } else {
                             // 国外桌面用户，跳转到Google Play
                             targetUrl = app_markets.google_play;
